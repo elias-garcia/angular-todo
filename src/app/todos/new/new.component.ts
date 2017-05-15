@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewComponent implements OnInit {
 
+  public description: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+
   }
 
 }

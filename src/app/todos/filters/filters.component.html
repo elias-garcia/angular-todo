@@ -1,0 +1,23 @@
+<div class="filter-nav text-center">
+  <a
+    [routerLink]="['/todos']"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="chip">
+      All
+  </a>
+  <a
+    [routerLink]="['/todos']"
+    [queryParams]="{ filter: 'active' }"
+    routerLinkActive="active"
+    class="chip">
+      Active
+  </a>
+  <a
+    [routerLink]="['/todos']"
+    [queryParams]="{ filter: 'completed' }"
+    routerLinkActive="active"
+    class="chip">
+      Completed
+  </a>
+</div>

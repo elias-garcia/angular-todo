@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TodosService } from './todos.service';
+import { Todo } from './../shared/models/todo.model';
 
 @Component({
   selector: 'app-todos',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  constructor() { }
+  private todos: Todo[];
+
+  constructor(private route: ActivatedRoute, private todosService: TodosService) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      switch (params.filter) {
+        case 'active':
+          break;
+        case 'completed':
+          break;
+        default:
+      }
+    });
   }
 
 }

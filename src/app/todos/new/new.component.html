@@ -1,7 +1,19 @@
 <h2 class="text-center">Create a new Todo</h2>
-<form novalidate>
+<form #toDoForm="ngForm">
   <div class="input-group">
-    <input type="text" class="form-input input-lg" placeholder="Todo description..." />
-    <button class="btn btn-primary input-group-btn btn-lg">Submit</button>
+    <input
+      [(ngModel)]="description"
+      name="description"
+      type="text"
+      class="form-input input-lg"
+      placeholder="Todo description..."
+      required
+    />
+    <button
+      (ngSubmit)="onSubmit()"
+      [disabled]="!toDoForm.form.valid"
+      class="btn btn-primary input-group-btn btn-lg">
+      Submit
+    </button>
   </div>
 </form>
