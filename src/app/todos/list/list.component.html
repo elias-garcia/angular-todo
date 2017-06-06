@@ -9,49 +9,51 @@
       <h4 class="empty-title">There are no Todos matching your filter :(</h4>
     </div>
     <ng-template #todosBlock>
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Todo</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let todo of todos">
-            <td>
-              <label class="form-checkbox">
-                <input type="checkbox" (click)="onChangeStatus(todo)" [checked]="todo.completed">
-                <i class="form-icon"></i>
-              </label>
-            </td>
-            <td *ngIf="!todo.editMode"
-              [ngClass]="{'text-strike': todo.completed}"
-              (dblclick)="todo.editMode = true">
-                {{ todo.description }}
-            </td>
-            <td *ngIf="todo.editMode">
-              <div class="input-group">
-                <input #editInput
-                  name="description"
-                  type="text"
-                  class="form-input"
-                  placeholder="New todo description..."
-                  [value]="todo.description"
-                  (keyup.enter)="onEdit(todo, editInput.value)"
-                  (keyup.escape)="todo.editMode = false"
-                  (blur)="todo.editMode = false"
-                  required/>
-              </div>
-            </td>
-            <td>
-              <button (click)="onDelete(todo.id)" class="btn btn-primary btn-action">
-                <i class="icon icon-delete"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-container">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Todo</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let todo of todos" (mouseover)="todo.deleting = true" (mouseleave)="todo.deleting = false">
+              <td>
+                <label class="form-checkbox">
+                  <input type="checkbox" (click)="onChangeStatus(todo)" [checked]="todo.completed">
+                  <i class="form-icon"></i>
+                </label>
+              </td>
+              <td *ngIf="!todo.editMode"
+                [ngClass]="{'text-strike': todo.completed}"
+                (dblclick)="todo.editMode = true">
+                  <h5>{{ todo.description }}</h5>
+              </td>
+              <td *ngIf="todo.editMode">
+                <div class="input-group">
+                  <input #editInput
+                    name="description"
+                    type="text"
+                    class="form-input"
+                    placeholder="New todo description..."
+                    [value]="todo.description"
+                    (keyup.enter)="onEdit(todo, editInput.value)"
+                    (keyup.escape)="todo.editMode = false"
+                    (blur)="todo.editMode = false"
+                    required/>
+                </div>
+              </td>
+              <td>
+                <button *ngIf="todo.deleting" (click)="onDelete(todo.id)" class="btn btn-primary btn-action">
+                  <i class="icon icon-delete"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </ng-template>
   </div>
 </div>
