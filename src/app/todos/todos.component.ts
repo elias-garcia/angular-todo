@@ -10,19 +10,25 @@ import { Todo } from './../shared/models/todo.model';
 })
 export class TodosComponent implements OnInit {
 
-  private todos: Todo[];
+  public todos: Todo[];
 
   constructor(private route: ActivatedRoute, private todosService: TodosService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      switch (params.filter) {
-        case 'active':
-          break;
-        case 'completed':
-          break;
-        default:
-      }
+      this.todosService.getTodos$().subscribe(todos => {
+        switch (params.filter) {
+          case 'active':
+            this.todos = todos.filter(todo => todo.completed === false);
+            break;
+          case 'completed':
+            this.todos = todos.filter(todo => todo.completed === true);
+            break;
+          default:
+            this.todos = todos;
+            break;
+        }
+      });
     });
   }
 

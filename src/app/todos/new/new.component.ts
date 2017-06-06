@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { TodosService } from './../todos.service';
 
 @Component({
   selector: 'app-new',
@@ -9,13 +11,14 @@ export class NewComponent implements OnInit {
 
   public description: string;
 
-  constructor() { }
+  constructor(private todosService: TodosService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-
+  public onSubmit(todoForm: FormGroup) {
+    this.todosService.createTodo(this.description);
+    todoForm.reset();
   }
 
 }

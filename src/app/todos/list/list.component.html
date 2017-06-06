@@ -1,9 +1,57 @@
-<h2 class="text-center">Todo List</h2>
-<app-filters></app-filters>
-<div class="empty">
-  <div class="empty-icon">
-    <i class="icon icon-message"></i>
+<div class="columns">
+  <div class="col-6 col-lg-11 centered">
+    <h2 class="text-center">Todo List</h2>
+    <app-filters></app-filters>
+    <div *ngIf="todos.length === 0; else todosBlock" class="empty">
+      <div class="empty-icon">
+        <i class="icon icon-message"></i>
+      </div>
+      <h4 class="empty-title">There are no Todos matching your filter :(</h4>
+    </div>
+    <ng-template #todosBlock>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Todo</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todos">
+            <td>
+              <label class="form-checkbox">
+                <input type="checkbox" (click)="onChangeStatus(todo)" [checked]="todo.completed">
+                <i class="form-icon"></i>
+              </label>
+            </td>
+            <td *ngIf="!todo.editMode"
+              [ngClass]="{'text-strike': todo.completed}"
+              (dblclick)="todo.editMode = true">
+                {{ todo.description }}
+            </td>
+            <td *ngIf="todo.editMode">
+              <div class="input-group">
+                <input #editInput
+                  name="description"
+                  type="text"
+                  class="form-input"
+                  placeholder="New todo description..."
+                  [value]="todo.description"
+                  (keyup.enter)="onEdit(todo, editInput.value)"
+                  (keyup.escape)="todo.editMode = false"
+                  (blur)="todo.editMode = false"
+                  required/>
+              </div>
+            </td>
+            <td>
+              <button (click)="onDelete(todo.id)" class="btn btn-primary btn-action">
+                <i class="icon icon-delete"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
   </div>
-  <h4 class="empty-title">You have no todos yet!</h4>
-  <p class="empty-subtitle">Start by adding one using the form above.</p>
 </div>
