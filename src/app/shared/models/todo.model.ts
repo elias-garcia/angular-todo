@@ -11,7 +11,6 @@ export class Todo {
     this.description = description;
     this.completed = false;
     this.editing = false;
-    this.deleting = false;
   }
 
 };

@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let todo of todos" (mouseover)="todo.deleting = true" (mouseleave)="todo.deleting = false">
+            <tr *ngFor="let todo of todos">
               <td>
                 <label class="form-checkbox">
                   <input type="checkbox" (click)="onChangeStatus(todo)" [checked]="todo.completed">
@@ -46,7 +46,7 @@
                 </div>
               </td>
               <td>
-                <button *ngIf="todo.deleting" (click)="onDelete(todo.id)" class="btn btn-primary btn-action">
+                <button (click)="onDelete(todo.id)" class="btn btn-primary btn-action">
                   <i class="icon icon-delete"></i>
                 </button>
               </td>
