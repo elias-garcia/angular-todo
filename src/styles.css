@@ -5,3 +5,9 @@ h2 {
 .text-strike {
   text-decoration: line-through;
 }
+
+.loading {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+}
