@@ -1,16 +1,18 @@
 <div class="columns">
   <div class="column col-6 col-lg-12 centered">
     <h2 class="text-center">New Movement</h2>
-    <form>
+    <form novalidate>
       <div class="form-group">
         <label class="form-label" for="input-amount">Amount</label>
-        <input class="form-input" type="number" id="input-amount" placeholder="Amount" />
+        <input class="form-input" type="number" id="input-amount" placeholder="Amount"/>
       </div>
       <!-- form select control -->
       <div class="form-group">
-        <select class="form-select">
-          <option>Expense</option>
-          <option>Income</option>
+        <label class="form-label" for="option-type">Type</label>
+        <select class="form-select" id="option-type">
+          <option value="">Choose a type...</option>
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
         </select>
       </div>
       <div class="form-group">
