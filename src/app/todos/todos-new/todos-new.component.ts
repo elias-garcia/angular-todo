@@ -3,11 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { TodosService } from './../todos.service';
 
 @Component({
-  selector: 'app-new',
-  templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css']
+  selector: 'app-todos-new',
+  templateUrl: './todos-new.component.html',
+  styleUrls: ['./todos-new.component.css']
 })
-export class NewComponent implements OnInit {
+export class TodosNewComponent implements OnInit {
 
   public description: string;
 
